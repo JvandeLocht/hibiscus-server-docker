@@ -3,13 +3,14 @@ version: '3.1'
 services:
   hibiscus-server:
     image: hibiscus_server
-    #command: initdb # beim ersten Durchlauf mit MySQL muss einmal mit initdb die Datenbanktabellen angelegt werden.
+    # command: initdb # beim ersten Durchlauf mit MySQL muss einmal mit initdb die Datenbanktabellen angelegt werden.
     ports:
       - "8090:8080"
     environment:
       PASSWORD: foo
       DB_DRIVER: mysql
       DB_ADDR: db
+      DB_PORT: 3306
       DB_NAME: hibiscus
       DB_USERNAME: hibiscus
       DB_PASSWORD: hibiscus
@@ -28,10 +29,16 @@ services:
       MYSQL_USER: hibiscus
       MYSQL_PASSWORD: hibiscus
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
     # optional:
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -u root -prootpass | grep 'mysqld is alive' || exit 1"]
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8100:8080
 
 volumes:
   db_data:  
