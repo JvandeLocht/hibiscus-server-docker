@@ -19,8 +19,8 @@ case "$DB_DRIVER" in
 mysql)
     echo "Configuring MySQL db connection to $DB_ADDR"
     cat > $dbconfig <<EOF
-database.driver=de.willuhn.jameica.hbci.server.DBSupportMySqlImpl
-database.driver.mysql.jdbcurl=jdbc\:mysql\://${DB_ADDR/:/\\:}/${DB_NAME}?useUnicode\=Yes&characterEncoding\=ISO8859_1
+database.driver.mysql.jdbcdriver=com.mysql.jdbc.Driver
+database.driver.mysql.jdbcurl=jdbc\:mysql\://${DB_ADDR}\:$DB_PORT/${DB_NAME}?useUnicode\=Yes&characterEncoding\=ISO8859_1
 database.driver.mysql.username=${DB_USERNAME}
 database.driver.mysql.password=${DB_PASSWORD}
 EOF
