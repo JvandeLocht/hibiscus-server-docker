@@ -14,7 +14,8 @@ services:
       DB_NAME: hibiscus
       DB_USERNAME: hibiscus
       DB_PASSWORD: hibiscus
-      USE_SSL: false
+      USE_SSL: true
+      SHOW_BASIC_AUTH_WEBADMIN: true
     depends_on: 
       - db
   db:
