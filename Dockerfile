@@ -17,3 +17,4 @@ RUN ["chmod", "+x", "/wrap"]
 ENTRYPOINT ["/wrap"]
 
 EXPOSE 8080 
+VOLUME [ "/hibiscus-server" ]
